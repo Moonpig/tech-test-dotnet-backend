@@ -6,7 +6,7 @@ of time you can spend explain what further actions you'd take in response to
 the questions below.
 
 Make commits where you feel appropriate to make it easier for the assessor to 
-understand you thought process. 
+understand your thought process. 
 
 Please email you solution and answers in a .zip to 
 engineering-recruitment@moonpig.com when complete.
@@ -26,7 +26,7 @@ switched for something like an EntityFramework DBContext backed by a
 real database in production.
 
 Once you have completed the exercise please answer the questions listed below. 
-We are not looking for essay length answers.You can add the answers in this document. 
+We are not looking for essay length answers. You can add the answers in this document.
 
 ## Questions
 
