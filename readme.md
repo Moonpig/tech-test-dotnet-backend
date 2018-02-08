@@ -34,7 +34,7 @@ Q1. How long did it take to complete the test?
 
 Q2. What 'code smells' did you find in the existing implemention of part 1 and 2?
 
-Q3. What further steps would to you take to improve the solution given more time?
+Q3. What further steps would you take to improve the solution given more time?
 
 Q4. What's a technology that you're excited about and where do you see this being applicable?
 
