@@ -1,9 +1,8 @@
 # Moonpig Engineering recruitment test
 
-We've not set a time limit but wouldn't expect you to spend more than 1-2 
-hours, do whatever you feel is reasonable. If you're limited in the amount 
-of time you can spend explain what further actions you'd take in response to
-the questions below.
+We've not set a time limit, do whatever you feel is reasonable. If you're 
+limited in the amount of time you can spend explain what further actions
+you'd take in response to the questions below.
 
 Make commits where you feel appropriate to make it easier for the assessor to 
 understand your thought process. 
@@ -13,9 +12,9 @@ engineering-recruitment@moonpig.com when complete.
 
 ---
 
-Parts 1 and 2 have already been completed albeit lacking in quality, please 
-look at refactoring this into something that you consider to be clean and
-well tested.
+Parts 1 & 2 have already been completed albeit lacking in quality, please 
+check the implementation of these and look at refactoring it into something 
+that you consider to be clean and well tested.
 
 Then extend your solution to capture the requirments listed in part 3.
 
@@ -26,19 +25,20 @@ switched for something like an EntityFramework DBContext backed by a
 real database in production.
 
 Once you have completed the exercise please answer the questions listed below. 
-We are not looking for essay length answers. You can add the answers in this document.
+We are not looking for essay length answers. You can add the answers in this 
+document.
 
 ## Questions
 
-Q1. How long did it take to complete the test?
+Q1. What 'code smells' did you find in the existing implemention of part 1 & 2?
 
-Q2. What 'code smells' did you find in the existing implemention of part 1 and 2?
+Q2. What further steps would you take to improve the solution given more time?
 
-Q3. What further steps would you take to improve the solution given more time?
+Q3. What's a technology that you're excited about and where do you see this 
+    being applicable?
 
-Q4. What's a technology that you're excited about and where do you see this being applicable?
-
-Q5. What process would you take to identify a performance issue in a production environment? 
+Q4. What process would you take to identify a performance issue in a production
+    environment? 
 
 ## Programming Exercise - Moonpig Post Office
 
