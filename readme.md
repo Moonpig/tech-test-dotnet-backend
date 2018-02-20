@@ -7,8 +7,8 @@ you'd take in response to the questions below.
 Make commits where you feel appropriate to make it easier for the assessor to 
 understand your thought process. 
 
-Please email you solution and answers in a .zip to 
-engineering-recruitment@moonpig.com when complete.
+When complete please upload your solution and answers in a .zip to the google
+drive link provided to you by the recruiter.
 
 ---
 
