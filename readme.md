@@ -3,13 +3,10 @@
 We've not set a time limit, do whatever you feel is reasonable however consider
  this to be production quality code. 
 
-Make commits where you feel appropriate to make it easier for the assessor to 
-understand your thought process. 
-
 When complete please upload your solution and answers in a .zip to the google
 drive link provided to you by the recruiter.
 
----
+-----
 
 Parts 1 & 2 have already been completed albeit lacking in quality, please 
 check the implementation of these and look at refactoring it into something 
@@ -29,7 +26,7 @@ document.
 
 ## Questions
 
-Q1. What 'code smells' did you find in the existing implementation of part 1 & 2?
+Q1. What 'code smells' / anti-patterns did you find in the existing implemention of part 1 & 2?
 
 Q2. What further steps would you take to improve the solution given more time?
 
@@ -64,16 +61,17 @@ received. For example, a supplier with a lead time of one day, receiving
  an order today will send it to Moonpig tomorrow.
 
 
-2. Once all products for an order have arrived at Moonpig from the suppliers, 
+2. For the purposes of this exercise we are ignoring time i.e. if a supplier has a 
+lead time of 1 day then an order received any time on Tuesday would arrive at Moonpig on the Wednesday.
+
+3. Once all products for an order have arrived at Moonpig from the suppliers, 
 they will be despatched to the customer on the same day.
 
-### Part 1
+
+### Part 1 
 
 Write an implementation of `IPostOffice` that calculates the despatch date 
 of an order. 
-
-Some of the code in the Post Office system has already been written; your 
-implementation should interact with this code.
 
 
 ### Part 2
@@ -89,7 +87,9 @@ on the weekend are despatched on the following Monday.
 ### Part 3
 
 The Moonpig post office is still getting complaints... It turns out suppliers 
-don't work during the weekend as well.
+don't work during the weekend as well, i.e. if an order is received on the Friday 
+with a lead time of 2 days, Moonpig would receive and dispatch on the Tuesday.
+
 
 Modify the existing code to ensure that any orders that would have been processed
 during the weekend resume processing on Monday.
