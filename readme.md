@@ -1,8 +1,7 @@
 # Moonpig Engineering recruitment test
 
-We've not set a time limit, do whatever you feel is reasonable. If you're 
-limited in the amount of time you can spend explain what further actions
-you'd take in response to the questions below.
+We've not set a time limit, do whatever you feel is reasonable however consider
+ this to be production quality code. 
 
 Make commits where you feel appropriate to make it easier for the assessor to 
 understand your thought process. 
@@ -16,7 +15,7 @@ Parts 1 & 2 have already been completed albeit lacking in quality, please
 check the implementation of these and look at refactoring it into something 
 that you consider to be clean and well tested.
 
-Then extend your solution to capture the requirments listed in part 3.
+Then extend your solution to capture the requirements listed in part 3.
 
 Do not change the public interface `IPostOffice`. The provided DbContext
 is a stubbed class which provides test data. Please feel free to use this
@@ -30,7 +29,7 @@ document.
 
 ## Questions
 
-Q1. What 'code smells' did you find in the existing implemention of part 1 & 2?
+Q1. What 'code smells' did you find in the existing implementation of part 1 & 2?
 
 Q2. What further steps would you take to improve the solution given more time?
 
@@ -61,7 +60,9 @@ despatched to the customer.
 Assumptions:
 
 1. Suppliers start processing an order on the same day that the order is 
-received.
+received. For example, a supplier with a lead time of one day, receiving
+ an order today will send it to Moonpig tomorrow.
+
 
 2. Once all products for an order have arrived at Moonpig from the suppliers, 
 they will be despatched to the customer on the same day.
