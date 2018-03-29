@@ -26,7 +26,8 @@ document.
 
 ## Questions
 
-Q1. What 'code smells' / anti-patterns did you find in the existing implemention of part 1 & 2?
+Q1. What 'code smells' / anti-patterns did you find in the existing 
+	implemention of part 1 & 2?
 
 Q2. What further steps would you take to improve the solution given more time?
 
@@ -57,15 +58,16 @@ despatched to the customer.
 Assumptions:
 
 1. Suppliers start processing an order on the same day that the order is 
-received. For example, a supplier with a lead time of one day, receiving
- an order today will send it to Moonpig tomorrow.
+	received. For example, a supplier with a lead time of one day, receiving
+	an order today will send it to Moonpig tomorrow.
 
 
-2. For the purposes of this exercise we are ignoring time i.e. if a supplier has a 
-lead time of 1 day then an order received any time on Tuesday would arrive at Moonpig on the Wednesday.
+2. For the purposes of this exercise we are ignoring time i.e. if a 
+	supplier has a lead time of 1 day then an order received any time on 
+	Tuesday would arrive at Moonpig on the Wednesday.
 
 3. Once all products for an order have arrived at Moonpig from the suppliers, 
-they will be despatched to the customer on the same day.
+	they will be despatched to the customer on the same day.
 
 
 ### Part 1 
@@ -87,9 +89,10 @@ on the weekend are despatched on the following Monday.
 ### Part 3
 
 The Moonpig post office is still getting complaints... It turns out suppliers 
-don't work during the weekend as well, i.e. if an order is received on the Friday 
-with a lead time of 2 days, Moonpig would receive and dispatch on the Tuesday.
+don't work during the weekend as well, i.e. if an order is received on the 
+Friday with a lead time of 2 days, Moonpig would receive and dispatch on the 
+Tuesday.
 
 
-Modify the existing code to ensure that any orders that would have been processed
-during the weekend resume processing on Monday.
+Modify the existing code to ensure that any orders that would have been 
+processed during the weekend resume processing on Monday.
