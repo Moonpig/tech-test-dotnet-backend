@@ -3,16 +3,16 @@
 We've not set a time limit, do whatever you feel is reasonable however consider
  this to be production quality code. 
 
-When complete please upload your solution and answers in a .zip to the google
+When complete, please upload your solution and answers in a .zip to the google
 drive link provided to you by the recruiter.
 
 -----
 
-Parts 1 & 2 have already been completed albeit lacking in quality, please 
+**Parts 1 & 2 have already been completed** albeit lacking in quality. Please 
 check the implementation of these and look at refactoring it into something 
 that you consider to be clean and well tested.
 
-Then extend your solution to capture the requirements listed in part 3.
+Once done, extend your solution to capture the requirements listed in part 3.
 
 Do not change the public interface `IPostOffice`. The provided DbContext
 is a stubbed class which provides test data. Please feel free to use this
@@ -40,25 +40,17 @@ Q4. What process would you take to identify a performance issue in a production
 ## Programming Exercise - Moonpig Post Office
 
 You have been tasked with creating a service that calculates the estimated 
-despatch dates of customers' orders. 
+despatch dates for a customer order. 
 
 An order contains a collection of products that a customer has added to their 
-shopping basket. 
-
-Each of these products is supplied to Moonpig on demand through a number of 
-3rd party suppliers.
-
-As soon as an order is received by a supplier, the supplier will start 
-processing the order. The supplier has an agreed lead time in which to 
-process the order before delivering it to the Moonpig Post Office.
+shopping basket. Each of these products is supplied to Moonpig on demand by a number of 3rd party suppliers. Each supplier will start processing the request as soon as it's received. They have an agreed lead time in which to process the supplier order before delivering it to the Moonpig Post Office.
 
 Once the Moonpig Post Office has received all products in an order it is 
 despatched to the customer.  
 
 Assumptions:
 
-1. Suppliers start processing an order on the same day that the order is 
-	received. For example, a supplier with a lead time of one day, receiving
+1. Suppliers start processing a supplier order on the same day that the order 		is received. For example, a supplier with a lead time of one day, receiving
 	an order today will send it to Moonpig tomorrow.
 
 
@@ -79,8 +71,8 @@ of an order.
 ### Part 2
 
 Moonpig Post Office staff are getting complaints from customers expecting 
-packages to be delivered on the weekend. You find out that the Moonpig post
-office is shut over the weekend. Packages received from a supplier on a weekend 
+packages to be delivered on the weekend. You find out that the Moonpig Post
+Office is shut over the weekend. Packages received from a supplier on a weekend 
 will be despatched the following Monday.
 
 Modify the existing code to ensure that any orders received from a supplier
@@ -88,7 +80,7 @@ on the weekend are despatched on the following Monday.
 
 ### Part 3
 
-The Moonpig post office is still getting complaints... It turns out suppliers 
+The Moonpig Post Office is still getting complaints... It turns out suppliers 
 don't work during the weekend as well, i.e. if an order is received on the 
 Friday with a lead time of 2 days, Moonpig would receive and dispatch on the 
 Tuesday.
