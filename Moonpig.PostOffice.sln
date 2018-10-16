@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Data", "Moonpig.PostOffice.Data\Moonpig.PostOffice.Data.csproj", "{2DD41C4A-195B-4EF8-894F-803A322A1EEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Domain", "Moonpig.PostOffice.Domain\Moonpig.PostOffice.Domain.csproj", "{0F68F12D-0187-4ACF-A558-A4D61FD05124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Api", "Moonpig.PostOffice.Api\Moonpig.PostOffice.Api.csproj", "{00E5019F-E965-4908-B3F1-F7D49B6C5D56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{2DD41C4A-195B-4EF8-894F-803A322A1EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD41C4A-195B-4EF8-894F-803A322A1EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD41C4A-195B-4EF8-894F-803A322A1EEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F68F12D-0187-4ACF-A558-A4D61FD05124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F68F12D-0187-4ACF-A558-A4D61FD05124}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F68F12D-0187-4ACF-A558-A4D61FD05124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F68F12D-0187-4ACF-A558-A4D61FD05124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
