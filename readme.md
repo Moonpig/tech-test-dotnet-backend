@@ -10,13 +10,13 @@ instructions. In return we ask that you make sure your implementation
 follows all the best practices you are aware of, and that at the end of it, 
 the code you submit, is code you are proud of. 
 
-We have not set a timelimit, we prefer that you spend some extra time to get
+We have not set a time limit, we prefer that you spend some extra time to get
 it right and write the highest quality code you can. Please feel free to make
-any changes you want to the solution, add classes, remove projects etc. If you
-change the request or response please update the example in the section below.
+any changes you want to the solution, add classes, remove projects etc.
 
-For bonus points, commit regularly and include the .git folder in your
-submission. This will allow us to follow the evolution of your solution.
+We are interested in seeing how you approach the task so please commit more
+regularly than you normally would so we can see each step and **include
+the .git folder in your submission**.
 
 When complete please upload your solution and answers in a .zip to the google
 drive link provided to you by the recruiter.
@@ -45,34 +45,33 @@ despatched to the customer.
 	received. For example, a supplier with a lead time of one day, receiving
 	an order today will send it to Moonpig tomorrow.
 
-
 2. For the purposes of this exercise we are ignoring time i.e. if a 
 	supplier has a lead time of 1 day then an order received any time on 
 	Tuesday would arrive at Moonpig on the Wednesday.
 
-3. Once all products for an order have arrived at Moonpig from the suppliers, 
+3. Once all products for an order have arrived at Moonpig from the suppliers,
 	they will be despatched to the customer on the same day.
 
 ### Part 1 
 
-When the /api/DespatchDate endpoint is hit return the despatch date of that 
+When the /api/DespatchDate endpoint is hit return the despatch date of that
 order.
 
 ### Part 2
 
-Moonpig Post Office staff are getting complaints from customers expecting 
+Moonpig Post Office staff are getting complaints from customers expecting
 packages to be delivered on the weekend. You find out that the Moonpig post
-office is shut over the weekend. Packages received from a supplier on a weekend 
-will be despatched the following Monday.
+office is shut over the weekend. Packages received from a supplier on a
+weekend will be despatched the following Monday.
 
 Modify the existing code to ensure that any orders received from a supplier
 on the weekend are despatched on the following Monday.
 
 ### Part 3
 
-The Moonpig post office is still getting complaints... It turns out suppliers 
-don't work during the weekend as well, i.e. if an order is received on the 
-Friday with a lead time of 2 days, Moonpig would receive and dispatch on the 
+The Moonpig post office is still getting complaints... It turns out suppliers
+don't work during the weekend as well, i.e. if an order is received on the
+Friday with a lead time of 2 days, Moonpig would receive and despatch on the
 Tuesday.
 
 Modify the existing code to ensure that any orders that would have been 
@@ -80,9 +79,9 @@ processed during the weekend resume processing on Monday.
 
 ---
 
-Parts 1 & 2 have already been completed albeit lacking in quality. Please review
-the code, document the problems you find (see question 1), and refactor into
-what you would consider quality code. 
+Parts 1 & 2 have already been completed albeit lacking in quality. Please
+review the code, document the problems you find (see question 1), and refactor
+into what you would consider quality code.
 
 Once you have completed the refactoring, extend your solution to capture the 
 requirements listed in part 3.
@@ -99,9 +98,9 @@ document.
 ## Questions
 
 Q1. What 'code smells' / anti-patterns did you find in the existing 
-	implemention of part 1 & 2?
+	implementation of part 1 & 2?
 
-Q2. What best pracices have you used while implementing your solution?
+Q2. What best practices have you used while implementing your solution?
 
 Q3. What further steps would you take to improve the solution given more time?
 
