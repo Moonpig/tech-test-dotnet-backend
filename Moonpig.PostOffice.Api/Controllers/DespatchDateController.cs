@@ -10,7 +10,7 @@
     [Route("api/[controller]")]
     public class DespatchDateController : Controller
     {
-        public DateTime _mlt;
+        private DateTime _mlt;
 
         [HttpGet]
         public DespatchDate Get(List<int> productIds, DateTime orderDate)
