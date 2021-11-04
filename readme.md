@@ -100,6 +100,9 @@ document.
 Q1. What 'code smells' / anti-patterns did you find in the existing 
 	implementation of part 1 & 2?
 
+	- Two of the five unit tests failed, this was because a dynamic date was being used 'DateTime.Now' causing the despatch date to fall on a weekend
+	  which the code then adjusts to a weekend day. The unit tests were refactored to use fixed dates.
+
 Q2. What best practices have you used while implementing your solution?
 
 Q3. What further steps would you take to improve the solution given more time?
