@@ -13,24 +13,32 @@
         public void OneProductWithLeadTimeOfOneDay()
         {
             DespatchDateController controller = new DespatchDateController();
-            DespatchDate date = controller.Get(new List<int>() { 1 }, new DateTime(2021, 11, 01));
-            date.Date.Date.ShouldBe(new DateTime(2021, 11, 01).Date.AddDays(1));
+            DespatchDate date = controller.Get(new List<int>() { 1 }, new DateTime(2018, 01, 01));
+            date.Date.Date.ShouldBe(new DateTime(2018, 01, 01).Date.AddDays(1));
         }
 
         [Fact]
         public void OneProductWithLeadTimeOfTwoDay()
         {
             DespatchDateController controller = new DespatchDateController();
-            DespatchDate date = controller.Get(new List<int>() { 2 }, new DateTime(2021, 11, 01));
-            date.Date.Date.ShouldBe(new DateTime(2021, 11, 01).Date.AddDays(2));
+            DespatchDate date = controller.Get(new List<int>() { 2 }, new DateTime(2018, 01, 01));
+            date.Date.Date.ShouldBe(new DateTime(2018, 01, 01).Date.AddDays(2));
+        }
+
+        [Fact]
+        public void SupplierWithLongestLeadTimeUsed()
+        {
+            DespatchDateController controller = new DespatchDateController();
+            DespatchDate date = controller.Get(new List<int>() { 1, 2 }, new DateTime(2018, 01, 01));
+            date.Date.Date.ShouldBe(new DateTime(2018, 01, 01).Date.AddDays(2));
         }
 
         [Fact]
         public void OneProductWithLeadTimeOfThreeDay()
         {
             DespatchDateController controller = new DespatchDateController();
-            DespatchDate date = controller.Get(new List<int>() { 3 }, new DateTime(2021, 11, 01));
-            date.Date.Date.ShouldBe(new DateTime(2021, 11, 01).Date.AddDays(3));
+            DespatchDate date = controller.Get(new List<int>() { 3 }, new DateTime(2018, 01, 01));
+            date.Date.Date.ShouldBe(new DateTime(2018, 01, 01).Date.AddDays(3));
         }
 
         [Fact]

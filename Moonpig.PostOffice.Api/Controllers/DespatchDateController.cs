@@ -16,13 +16,16 @@
         public DespatchDate Get(List<int> productIds, DateTime orderDate)
         {
             _maxLeadTime = orderDate; // max lead time
+
             foreach (int ID in productIds)
             {
                 DbContext dbContext = new DbContext();
                 int supplierId = dbContext.Products.Single(x => x.ProductId == ID).SupplierId;
                 int leadTime = dbContext.Suppliers.Single(x => x.SupplierId == supplierId).LeadTime;
-                if (orderDate.AddDays(leadTime) > _maxLeadTime)
+                if (orderDate.AddDays(leadTime) > _maxLeadTime) 
+                {
                     _maxLeadTime = orderDate.AddDays(leadTime);
+                }
             }
 
             if (_maxLeadTime.DayOfWeek == DayOfWeek.Saturday)

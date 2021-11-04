@@ -115,9 +115,29 @@ Q1. What 'code smells' / anti-patterns did you find in the existing
 
 	- if, else statement is missing curly braces for the else section. These have been added.
 
-	- 'using' imports changed to reference the full namespaces of the functionality being imported.
+	- 'using' imports changed to reference the full namespaces of the functionality being imported in the unit tests and the controller.
+
+	- Missing unit test for the supplier with the longest lead time used acceptance criteria, this has been added.
 
 Q2. What best practices have you used while implementing your solution?
+
+   - variables renamed to accurately reflect what the variable holds.
+
+   - implicitly typed variables 'var' replaced with explicit types 'int' and 'DespatchDate' in the API controller and the unit tests.
+
+   - if, else statement is missing curly braces for the else section.  These have been added.
+
+   - '_' prefix naming convention indicating a private variable.
+
+   - variable scope limited (public changed to private in the case of '_mlt').
+
+   - 'using' imports changed to reference the full namespaces.
+
+   - wrote the unit tests first following the TDD approach
+
+   - ensured all the acceptance criteria was reflected in the unit tests.
+
+
 
 Q3. What further steps would you take to improve the solution given more time?
 
