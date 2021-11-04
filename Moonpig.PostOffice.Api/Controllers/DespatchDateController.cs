@@ -28,6 +28,22 @@
                 }
             }
 
+            int weekendCounter = 0;
+            DateTime dateHolder = orderDate;
+
+            while (dateHolder <= _maxLeadTime)
+            {
+                if(dateHolder.DayOfWeek == DayOfWeek.Saturday || dateHolder.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    weekendCounter++;
+                }
+
+                dateHolder = dateHolder.AddDays(1);
+            }
+
+            _maxLeadTime = _maxLeadTime.AddDays(weekendCounter);
+
+
             if (_maxLeadTime.DayOfWeek == DayOfWeek.Saturday)
             {
                 return new DespatchDate { Date = _maxLeadTime.AddDays(2) };

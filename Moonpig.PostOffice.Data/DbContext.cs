@@ -48,6 +48,13 @@
                         Name = "Tacky T-Shrts",
                         LeadTime = 11
                     }
+                    ,
+                    new Supplier
+                    {
+                        SupplierId = 7,
+                        Name = "Large T-Shrts",
+                        LeadTime = 0
+                    }
                 }.AsQueryable();
             }
         }

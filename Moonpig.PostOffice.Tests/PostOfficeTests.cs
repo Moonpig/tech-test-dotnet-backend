@@ -45,16 +45,16 @@
         public void SaturdayHasExtraTwoDays()
         {
             DespatchDateController controller = new DespatchDateController();
-            DespatchDate date = controller.Get(new List<int>() { 1 }, new DateTime(2021,11,05));
-            date.Date.ShouldBe(new DateTime(2021, 11, 05).Date.AddDays(3));
+            DespatchDate date = controller.Get(new List<int>() { 8 }, new DateTime(2021,11,06));
+            date.Date.ShouldBe(new DateTime(2021, 11, 06).Date.AddDays(2));
         }
 
         [Fact]
         public void SundayHasExtraDay()
         {
             DespatchDateController controller = new DespatchDateController();
-            DespatchDate date = controller.Get(new List<int>() { 3 }, new DateTime(2021, 11, 04));
-            date.Date.ShouldBe(new DateTime(2021, 11, 04).Date.AddDays(4));
+            DespatchDate date = controller.Get(new List<int>() { 8 }, new DateTime(2021, 11, 07));
+            date.Date.ShouldBe(new DateTime(2021, 11, 07).Date.AddDays(1));
         }
 
         [Fact]
