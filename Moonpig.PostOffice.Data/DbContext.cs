@@ -46,7 +46,7 @@
                     {
                         SupplierId = 6,
                         Name = "Tacky T-Shrts",
-                        LeadTime = 13
+                        LeadTime = 11
                     }
                 }.AsQueryable();
             }
