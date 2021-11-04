@@ -10,26 +10,26 @@
     [Route("api/[controller]")]
     public class DespatchDateController : Controller
     {
-        private DateTime _mlt;
+        private DateTime _maxLeadTime;
 
         [HttpGet]
         public DespatchDate Get(List<int> productIds, DateTime orderDate)
         {
-            _mlt = orderDate; // max lead time
+            _maxLeadTime = orderDate; // max lead time
             foreach (var ID in productIds)
             {
                 DbContext dbContext = new DbContext();
-                var s = dbContext.Products.Single(x => x.ProductId == ID).SupplierId;
-                var lt = dbContext.Suppliers.Single(x => x.SupplierId == s).LeadTime;
-                if (orderDate.AddDays(lt) > _mlt)
-                    _mlt = orderDate.AddDays(lt);
+                var supplierId = dbContext.Products.Single(x => x.ProductId == ID).SupplierId;
+                var leadTime = dbContext.Suppliers.Single(x => x.SupplierId == supplierId).LeadTime;
+                if (orderDate.AddDays(leadTime) > _maxLeadTime)
+                    _maxLeadTime = orderDate.AddDays(leadTime);
             }
-            if (_mlt.DayOfWeek == DayOfWeek.Saturday)
+            if (_maxLeadTime.DayOfWeek == DayOfWeek.Saturday)
             {
-                return new DespatchDate { Date = _mlt.AddDays(2) };
+                return new DespatchDate { Date = _maxLeadTime.AddDays(2) };
             }
-            else if (_mlt.DayOfWeek == DayOfWeek.Sunday) return new DespatchDate { Date = _mlt.AddDays(1) };
-            else return new DespatchDate { Date = _mlt };
+            else if (_maxLeadTime.DayOfWeek == DayOfWeek.Sunday) return new DespatchDate { Date = _maxLeadTime.AddDays(1) };
+            else return new DespatchDate { Date = _maxLeadTime };
         }
     }
 }

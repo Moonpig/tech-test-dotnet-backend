@@ -106,6 +106,8 @@ Q1. What 'code smells' / anti-patterns did you find in the existing
 	- The '_mlt' variable was changed from 'public' to 'private' to limit the scope following best practice. '_' prefixed variables are naming conventions used
 	  for private variables.
 
+	- variables '_mlt', 's' and 'lt' have been renamed too '_maxLeadTime', 'supplierId' and 'leadTime' to accurately reflect what the variable holds following best practice.
+
 Q2. What best practices have you used while implementing your solution?
 
 Q3. What further steps would you take to improve the solution given more time?
