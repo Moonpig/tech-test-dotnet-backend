@@ -138,11 +138,26 @@ Q2. What best practices have you used while implementing your solution?
    - ensured all the acceptance criteria was reflected in the unit tests.
 
 
-
 Q3. What further steps would you take to improve the solution given more time?
+
+   - implement try, catch blocks in the code to ensure any exceptions are caught and accurate error messages are returned to the caller.
+   
+   - Given more time I would return accurate httpstatuscodes to ensure missing data returns a 404 and any exceptions return the correct error not a generic 
+     500 bad request.
+
+   - implement error logging so any errors are logged in the database to be looked at and root causes diagnosed.
+  
 
 Q4. What's a technology that you're excited about and where do you see this 
     being applicable? (Your answer does not have to be related to this problem)
+
+   - GraphQL excites me with the possibilities this can offer
+
+   - picking up node.js a new server side runtime interests me.
+
+   - exploring AWS and understanding the similarities and differences to Azure interests me
+
+   - Making better use of message brokers with message queues is interesting too, I've had some exposure with Azure Service Bus but would like to explore this further.
 
 ## Request and Response Examples
 

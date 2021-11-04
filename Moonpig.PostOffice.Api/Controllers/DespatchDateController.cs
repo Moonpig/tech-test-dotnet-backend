@@ -7,11 +7,17 @@
     using Microsoft.AspNetCore.Mvc;
     using Moonpig.PostOffice.Api.Model;
 
+
     [Route("api/[controller]")]
     public class DespatchDateController : Controller
     {
         private DateTime _maxLeadTime;
 
+        /// <summary>
+        /// Get method for the DespatchDate API designed to return the despatch date for a product based on ordered date.
+        /// </summary>
+        /// <param name="productIds">Id for the list of products a despatch date is requested for</param>
+        /// <param name="orderDate">Date the order was requested</param>
         [HttpGet]
         public DespatchDate Get(List<int> productIds, DateTime orderDate)
         {
@@ -31,6 +37,7 @@
             int weekendCounter = 0;
             DateTime dateHolder = orderDate;
 
+            // check each date between the order date and the max lead time, count the weekend days that exist between these dates.
             while (dateHolder <= _maxLeadTime)
             {
                 if(dateHolder.DayOfWeek == DayOfWeek.Saturday || dateHolder.DayOfWeek == DayOfWeek.Sunday)
