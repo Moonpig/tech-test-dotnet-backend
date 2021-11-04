@@ -111,6 +111,10 @@ Q1. What 'code smells' / anti-patterns did you find in the existing
 
 	- implicitly typed variables 'var' replaced with explicit types 'int' and 'DespatchDate' in the API controller and the unit tests.
 
+	- space entered between foreach loop and if statement in the despatchdate controller
+
+	- if, else statement is missing curly braces for the else section. These have been added.
+
 Q2. What best practices have you used while implementing your solution?
 
 Q3. What further steps would you take to improve the solution given more time?

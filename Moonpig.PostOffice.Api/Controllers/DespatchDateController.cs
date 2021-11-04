@@ -24,12 +24,19 @@
                 if (orderDate.AddDays(leadTime) > _maxLeadTime)
                     _maxLeadTime = orderDate.AddDays(leadTime);
             }
+
             if (_maxLeadTime.DayOfWeek == DayOfWeek.Saturday)
             {
                 return new DespatchDate { Date = _maxLeadTime.AddDays(2) };
             }
-            else if (_maxLeadTime.DayOfWeek == DayOfWeek.Sunday) return new DespatchDate { Date = _maxLeadTime.AddDays(1) };
-            else return new DespatchDate { Date = _maxLeadTime };
+            else if (_maxLeadTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return new DespatchDate { Date = _maxLeadTime.AddDays(1) };
+            }
+            else
+            {
+                return new DespatchDate { Date = _maxLeadTime };
+            }
         }
     }
 }
