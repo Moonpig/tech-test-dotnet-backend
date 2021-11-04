@@ -146,6 +146,8 @@ Q3. What further steps would you take to improve the solution given more time?
      500 bad request.
 
    - implement error logging so any errors are logged in the database to be looked at and root causes diagnosed.
+
+   - implemented entity framework and implemented a sql server database with stored the data the API uses.
   
 
 Q4. What's a technology that you're excited about and where do you see this 
