@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Api.Controllers;
+    using Moonpig.PostOffice.Api.Controllers;
     using Moonpig.PostOffice.Api.Model;
     using Shouldly;
     using Xunit;

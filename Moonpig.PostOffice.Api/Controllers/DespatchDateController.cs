@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Data;
+    using Moonpig.PostOffice.Data;
     using Microsoft.AspNetCore.Mvc;
-    using Model;
+    using Moonpig.PostOffice.Api.Model;
 
     [Route("api/[controller]")]
     public class DespatchDateController : Controller
