@@ -1,9 +1,0 @@
-apiVersion: backstage.io/v1
-kind: System
-metadata:
-  name: tech-test-dotnet-backend
-  annotations:
-    github.com/project-slug: Moonpig/tech-test-dotnet-backend
-spec:
-  owner: unknown
-  lifecycle: unknown
