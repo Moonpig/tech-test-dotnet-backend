@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Moonpig.PostOffice.Api.Model;
 
-namespace Moonpig.PostOffice.Api
+namespace Moonpig.PostOffice.Api.Interfaces
 {
     public interface IDespatchService
     {

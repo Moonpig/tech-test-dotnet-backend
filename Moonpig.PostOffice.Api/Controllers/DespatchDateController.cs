@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Moonpig.PostOffice.Api.Interfaces;
 using Moonpig.PostOffice.Api.Model;
 
 namespace Moonpig.PostOffice.Api.Controllers

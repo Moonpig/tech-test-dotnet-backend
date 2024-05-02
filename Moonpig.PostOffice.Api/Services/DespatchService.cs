@@ -1,9 +1,10 @@
-﻿using Moonpig.PostOffice.Api.Model;
+﻿using Moonpig.PostOffice.Api.Interfaces;
+using Moonpig.PostOffice.Api.Model;
 using Moonpig.PostOffice.Data;
 using System;
 using System.Collections.Generic;
 
-namespace Moonpig.PostOffice.Api
+namespace Moonpig.PostOffice.Api.Services
 {
     public class DespatchService : IDespatchService
     {
@@ -32,7 +33,7 @@ namespace Moonpig.PostOffice.Api
             {
                 return new DespatchDate { Date = maxLeadTime.AddDays(2) };
             }
-            else if (maxLeadTime.DayOfWeek == DayOfWeek.Sunday) 
+            else if (maxLeadTime.DayOfWeek == DayOfWeek.Sunday)
                 return new DespatchDate { Date = maxLeadTime.AddDays(1) };
 
             else return new DespatchDate { Date = maxLeadTime };
