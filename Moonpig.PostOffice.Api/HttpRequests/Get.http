@@ -1,0 +1,7 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+## Get
+
+@host = http://localhost:55383
+
+GET {{host}}/api/DespatchDate?ProductIds=2&ProductIds=3&orderDate=2018-01-29T00:00:00 

@@ -1,4 +1,4 @@
-﻿namespace Moonpig.PostOffice.Data
+﻿namespace Moonpig.PostOffice.Data.Entities
 {
     using System.Linq;
     using System.Collections.Generic;
