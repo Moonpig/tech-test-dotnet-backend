@@ -1,6 +1,6 @@
 ﻿using Moonpig.PostOffice.Api.Interfaces;
 using Moonpig.PostOffice.Api.Model;
-using Moonpig.PostOffice.Data;
+using Moonpig.PostOffice.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,35 +18,40 @@ namespace Moonpig.PostOffice.Api.Services
 
         public DespatchDate GetDespatchDates(List<int> productIds, DateTime orderDate)
         {
-            var maxLeadTime = GetMaxLeadTime(productIds);
-            var dispatchDate = AddWeekdays(orderDate, maxLeadTime);
+            if (!productIds.Any() || orderDate == DateTime.MinValue)
+            {
+                return null;
+            }
 
-            return new DespatchDate(dispatchDate);
+            var maxLeadTime = GetMaxLeadTime(productIds);
+            var despatchDate = GetDespatchDate(orderDate, maxLeadTime);
+
+            return new DespatchDate(despatchDate);
         }
 
         private int GetMaxLeadTime(List<int> productIds)
         {
-            var leadTimes = new List<int>();
-
-            foreach (var id in productIds)
+            var leadTimes = productIds.Select(id =>
             {
                 var product = _dataProvider.GetProduct(id);
-                var supplierId = product.SupplierId;
+                var supplier = _dataProvider.GetSupplier(product.SupplierId);
 
-                var supplier = _dataProvider.GetSupplier(supplierId);
-                var leadTime = supplier.LeadTime;
+                return supplier.LeadTime;
+            });
 
-                leadTimes.Add(leadTime);
+            var leadTime = leadTimes.Max();
+
+            if (leadTime < 1)
+            {
+                throw new NotSupportedException("Same day despatch not supported.");
             }
 
-            return leadTimes.Max();
+            return leadTime;
         }
 
-        private static DateTime AddWeekdays(DateTime startDate, int weekdaysToAdd)
+        private static DateTime GetDespatchDate(DateTime startDate, int weekdaysToAdd)
         {
-            var maxLeadTime = 30;
-
-            var weekdays = Enumerable.Range(0, maxLeadTime)
+            var weekdays = Enumerable.Range(0, 45)
                 .Select(offset => startDate.AddDays(offset))
                 .Where(x => x.DayOfWeek != DayOfWeek.Saturday)
                 .Where(x => x.DayOfWeek != DayOfWeek.Sunday)

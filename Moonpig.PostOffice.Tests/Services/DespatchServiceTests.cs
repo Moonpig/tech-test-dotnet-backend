@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Moonpig.PostOffice.Api.Services;
-using Moonpig.PostOffice.Data;
 using Moonpig.PostOffice.Data.Entities;
+using Moonpig.PostOffice.Data.Interfaces;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -12,7 +12,7 @@ namespace Moonpig.PostOffice.Tests.Services
     public class DespatchServiceTests
     {
         private readonly DespatchService _sut;
-        private Mock<IDataProvider> _mockDataProvider;
+        private readonly Mock<IDataProvider> _mockDataProvider;
 
         public DespatchServiceTests()
         {
@@ -23,19 +23,32 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact]
         public void OneProductWithLeadTimeOfOneDay_DateTimeNow()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var result = _sut.GetDespatchDates(new List<int>() { 1 }, DateTime.Now);
+            var result = _sut.GetDespatchDates([1], DateTime.Now);
 
             result.Date.ShouldBe(DateOnly.FromDateTime(DateTime.Now.AddDays(1)));
+        }
+
+        [Fact]
+        public void OneProductWithLeadTimeOfZeroDays_DateTimeNow()
+        {
+            // Arrange
+            SetupProduct(id: 1, leadTime: 0);
+
+            // Act
+            var act = () => _sut.GetDespatchDates([1], DateTime.Now);
+
+            // Assert
+            act.ShouldThrow<NotSupportedException>();
         }
 
         [Theory, MemberData(nameof(OneDayLeadTimeOrders))]
         public void OneProductWithLeadTimeOfOneDays(DateTime orderDate, DateTime expectedDate, string message)
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var result = _sut.GetDespatchDates(new List<int>() { 1 }, orderDate);
+            var result = _sut.GetDespatchDates([1], orderDate);
 
             result.Date.ShouldBe(DateOnly.FromDateTime(expectedDate), message);
         }
@@ -43,19 +56,29 @@ namespace Moonpig.PostOffice.Tests.Services
         [Theory, MemberData(nameof(TwoDayLeadTimeOrders))]
         public void OneProductWithLeadTimeOfTwoDays(DateTime orderDate, DateTime expectedDate, string message)
         {
-            SetupProduct(productId: 1, leadTime: 2);
+            SetupProduct(id: 1, leadTime: 2);
 
-            var result = _sut.GetDespatchDates(new List<int>() { 1 }, orderDate);
+            var result = _sut.GetDespatchDates([1], orderDate);
 
             result.Date.ShouldBe(DateOnly.FromDateTime(expectedDate), message);
+        }
+
+        [Theory, MemberData(nameof(LeadTimeOrders))]
+        public void OneProductWithVaryingLeadTimes(DateOnly orderDate, DateOnly expectedDate, int leadTime, string message)
+        {
+            SetupProduct(id: 1, leadTime: leadTime);
+
+            var result = _sut.GetDespatchDates([1], orderDate.ToDateTime(new TimeOnly()));
+
+            result.Date.ShouldBe(expectedDate, $"{message}, {leadTime} lead time.");
         }
 
         [Fact(DisplayName = "Case 1")]
         public void OneProductWithLeadTimeOfOneDay_WithDate()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var result = _sut.GetDespatchDates(new List<int>() { 1 }, new DateTime(2018, 01, 01));
+            var result = _sut.GetDespatchDates([1], new DateTime(2018, 01, 01));
 
             result.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 02)));
         }
@@ -63,9 +86,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 4")]
         public void OneProductWithLeadTimeOfOneDay_WhenOrderedOnFridayShouldArriveMonday()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var result = _sut.GetDespatchDates(new List<int>() { 1, }, new DateTime(2018, 01, 5));
+            var result = _sut.GetDespatchDates([1], new DateTime(2018, 01, 5));
 
             result.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 8)));
         }
@@ -73,9 +96,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 5")]
         public void OneProductWithLeadTimeOfOneDay_WhenOrderedOnSaturdayShouldArriveTuesday()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1, }, new DateTime(2018, 01, 6));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 01, 6));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 09)));
         }
@@ -83,9 +106,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact]
         public void OneProductWithLeadTimeOfTwoDay()
         {
-            SetupProduct(productId: 1, leadTime: 2);
+            SetupProduct(id: 1, leadTime: 2);
 
-            var actualDate = _sut.GetDespatchDates(new List<int>() { 1 }, DateTime.Now).Date;
+            var actualDate = _sut.GetDespatchDates([1], DateTime.Now).Date;
             var expectedDate = DateOnly.FromDateTime(DateTime.Now.Date.AddDays(2));
 
             actualDate.ShouldBe(expectedDate);
@@ -94,9 +117,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 2")]
         public void OneProductWithLeadTimeOfTwoDay_WithDate()
         {
-            SetupProduct(productId: 1, leadTime: 2);
+            SetupProduct(id: 1, leadTime: 2);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1 }, new DateTime(2018, 01, 01));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 01, 01));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 03)));
         }
@@ -104,10 +127,10 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 3")]
         public void OneProductWithLeadTimeOfTwoDay_WithMultipleSuppliers()
         {
-            SetupProduct(productId: 1, leadTime: 1);
-            SetupProduct(productId: 2, leadTime: 2);
+            SetupProduct(id: 1, leadTime: 1);
+            SetupProduct(id: 2, leadTime: 2);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1, 2 }, new DateTime(2018, 01, 01));
+            var date = _sut.GetDespatchDates([1, 2], new DateTime(2018, 01, 01));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 03)));
         }
@@ -115,9 +138,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact]
         public void OneProductWithLeadTimeOfThreeDay()
         {
-            SetupProduct(productId: 1, leadTime: 3);
+            SetupProduct(id: 1, leadTime: 3);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1 }, DateTime.Now);
+            var date = _sut.GetDespatchDates([1], DateTime.Now);
 
             date.Date.ShouldBe(DateOnly.FromDateTime(DateTime.Now.AddDays(3)));
         }
@@ -125,10 +148,10 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact]
         public void SaturdayHasExtraTwoDays()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1 }, new DateTime(2018, 1, 26));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 1, 26));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 1, 26).Date.AddDays(3)));
         }
@@ -147,9 +170,9 @@ namespace Moonpig.PostOffice.Tests.Services
             //    .Setup(x => x.GetSupplier(4))
             //    .Returns(supplier);
 
-            SetupProduct(productId: 1, leadTime: 3);
+            SetupProduct(id: 1, leadTime: 3);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1 }, new DateTime(2018, 1, 25));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 1, 25));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 1, 25).Date.AddDays(4)));
         }
@@ -157,9 +180,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 6")]
         public void OneProductWithLeadTimeOf1Day_WhenOrderedOnSundayShouldArriveTuesday()
         {
-            SetupProduct(productId: 1, leadTime: 1);
+            SetupProduct(id: 1, leadTime: 1);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1, }, new DateTime(2018, 01, 7));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 01, 7));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 09)));
         }
@@ -167,9 +190,9 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 7")]
         public void OneProductWithLeadTimeOf6Days_WhenOrderedOnFridayShouldArriveMonday()
         {
-            SetupProduct(productId: 1, leadTime: 6);
+            SetupProduct(id: 1, leadTime: 6);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1, }, new DateTime(2018, 01, 5));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 01, 5));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 15)));
         }
@@ -177,24 +200,24 @@ namespace Moonpig.PostOffice.Tests.Services
         [Fact(DisplayName = "Case 8")]
         public void OneProductWithLeadTimeOf11Days_WhenOrderedOnFridayShouldArriveMonday()
         {
-            SetupProduct(productId: 1, leadTime: 11);
+            SetupProduct(id: 1, leadTime: 11);
 
-            var date = _sut.GetDespatchDates(new List<int>() { 1, }, new DateTime(2018, 01, 5));
+            var date = _sut.GetDespatchDates([1], new DateTime(2018, 01, 5));
 
             date.Date.ShouldBe(DateOnly.FromDateTime(new DateTime(2018, 01, 22)));
         }
 
-        private void SetupProduct(int productId, int leadTime)
+        private void SetupProduct(int id, int leadTime)
         {
-            var product = new Product { ProductId = productId, Name = "Greetings Card", SupplierId = productId };
-            var supplier = new Supplier { SupplierId = productId, Name = "Acme Corporation", LeadTime = leadTime };
+            var product = new Product { ProductId = id, Name = "Greetings Card", SupplierId = id };
+            var supplier = new Supplier { SupplierId = id, Name = "Acme Corporation", LeadTime = leadTime };
 
             _mockDataProvider
-                .SetupSequence(x => x.GetProduct(productId))
+                .Setup(x => x.GetProduct(id))
                 .Returns(product);
 
             _mockDataProvider
-                .Setup(x => x.GetSupplier(productId))
+                .Setup(x => x.GetSupplier(id))
                 .Returns(supplier);
         }
 
@@ -218,6 +241,34 @@ namespace Moonpig.PostOffice.Tests.Services
             { new DateTime(2018, 1, 5), new DateTime(2018, 1, 9), "Order on Friday, arrive on Tuesday" },
             { new DateTime(2018, 1, 6), new DateTime(2018, 1, 10), "Order on Saturday, arrive on Wednesday" },
             { new DateTime(2018, 1, 7), new DateTime(2018, 1, 10), "Order on Sunday, arrive on Wednesday" },
+        };
+
+        public static TheoryData<DateOnly, DateOnly, int, string> LeadTimeOrders = new()
+        {
+            // One day lead time
+            { new (2018, 1, 1), new (2018, 1, 2), 1, "Order on Monday, arrive on Tuesday" },
+            { new (2018, 1, 2), new (2018, 1, 3), 1, "Order on Tuesday, arrive on Wednesday" },
+            { new (2018, 1, 3), new (2018, 1, 4), 1, "Order on Wednesday, arrive on Thursday" },
+            { new (2018, 1, 4), new (2018, 1, 5), 1, "Order on Thursday, arrive on Friday" },
+            { new (2018, 1, 5), new (2018, 1, 8), 1, "Order on Friday, arrive on Monday" },
+            { new (2018, 1, 6), new (2018, 1, 9), 1, "Order on Saturday, arrive on Tuesday" },
+            { new (2018, 1, 7), new (2018, 1, 9), 1, "Order on Sunday, arrive on Tuesday" },
+
+            // Two day lead time
+            { new (2018, 1, 1), new (2018, 1, 3), 2, "Order on Monday, arrive on Wednesday" },
+            { new (2018, 1, 2), new (2018, 1, 4), 2, "Order on Tuesday, arrive on Thursday" },
+            { new (2018, 1, 3), new (2018, 1, 5), 2, "Order on Wednesday, arrive on Friday" },
+            { new (2018, 1, 4), new (2018, 1, 8), 2, "Order on Thursday, arrive on Monday" },
+            { new (2018, 1, 5), new (2018, 1, 9), 2, "Order on Friday, arrive on Tuesday" },
+            { new (2018, 1, 6), new (2018, 1, 10), 2, "Order on Saturday, arrive on Wednesday" },
+            { new (2018, 1, 7), new (2018, 1, 10), 2, "Order on Sunday, arrive on Wednesday" },
+
+            // Varying lead times
+            { new (2018, 1, 1), new (2018, 1, 17), 12, "Order on Monday, arrive on Wednesday" },
+            { new (2018, 1, 2), new (2018, 1, 30), 20, "Order on Tuesday, arrive on Thursday" },
+            { new (2018, 1, 13), new (2018, 1, 22), 7, "Order on Thursday, arrive on Monday" },
+            { new (2018, 1, 5), new (2018, 1, 25), 14, "Order on Friday, arrive on Tuesday" },
+            { new (2018, 1, 10), new (2018, 2, 14), 25, "Order on Saturday, arrive on Wednesday" },
         };
     }
 }

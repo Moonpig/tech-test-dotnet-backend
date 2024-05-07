@@ -1,7 +1,15 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
-## Get
+## OK - Valid ids and date
 
-@host = http://localhost:55659
+@host = http://localhost:55650
 
 GET {{host}}/api/DespatchDate?ProductIds=2&ProductIds=3&orderDate=2018-01-29T00:00:00 
+
+### Bad Request - invalid date
+
+GET {{host}}/api/DespatchDate?ProductIds=2&ProductIds=3
+
+### Bad Request - invalid ids
+
+GET {{host}}/api/DespatchDate?orderDate=2018-01-29T00:00:00 

@@ -1,6 +1,6 @@
 ﻿using Moonpig.PostOffice.Data.Entities;
 
-namespace Moonpig.PostOffice.Data
+namespace Moonpig.PostOffice.Data.Interfaces
 {
     public interface IDataProvider
     {

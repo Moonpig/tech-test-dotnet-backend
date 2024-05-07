@@ -8,11 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Tests", "Moonpig.PostOffice.Tests\Moonpig.PostOffice.Tests.csproj", "{18B98C04-71F7-4775-B07E-F035BD571D44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Api.Tests", "Moonpig.PostOffice.Tests\Moonpig.PostOffice.Api.Tests.csproj", "{18B98C04-71F7-4775-B07E-F035BD571D44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Data", "Moonpig.PostOffice.Data\Moonpig.PostOffice.Data.csproj", "{2DD41C4A-195B-4EF8-894F-803A322A1EEC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moonpig.PostOffice.Api", "Moonpig.PostOffice.Api\Moonpig.PostOffice.Api.csproj", "{00E5019F-E965-4908-B3F1-F7D49B6C5D56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moonpig.PostOffice.Data.Tests", "Moonpig.PostOffice.Data.Tests\Moonpig.PostOffice.Data.Tests.csproj", "{51F68659-60D8-4B62-8ED7-1FC5290E3A41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{26A602F6-D563-4379-BE1D-882899F594AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +36,17 @@ Global
 		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E5019F-E965-4908-B3F1-F7D49B6C5D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F68659-60D8-4B62-8ED7-1FC5290E3A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F68659-60D8-4B62-8ED7-1FC5290E3A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F68659-60D8-4B62-8ED7-1FC5290E3A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F68659-60D8-4B62-8ED7-1FC5290E3A41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18B98C04-71F7-4775-B07E-F035BD571D44} = {26A602F6-D563-4379-BE1D-882899F594AC}
+		{51F68659-60D8-4B62-8ED7-1FC5290E3A41} = {26A602F6-D563-4379-BE1D-882899F594AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5598D67-5212-423F-A662-4955B7DA5501}

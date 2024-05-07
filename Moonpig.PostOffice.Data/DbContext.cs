@@ -1,7 +1,9 @@
-﻿namespace Moonpig.PostOffice.Data.Entities
+﻿namespace Moonpig.PostOffice.Data
 {
     using System.Linq;
     using System.Collections.Generic;
+    using Moonpig.PostOffice.Data.Entities;
+    using Moonpig.PostOffice.Data.Interfaces;
 
     public class DbContext : IDbContext
     {

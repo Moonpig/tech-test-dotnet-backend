@@ -23,7 +23,7 @@ namespace Moonpig.PostOffice.Api.Controllers
         {
             var despatchDate = _despatchService.GetDespatchDates(productIds, orderDate);
 
-            return Ok(despatchDate);
+            return despatchDate is null ? BadRequest() : Ok(despatchDate);
         }
     }
 }
