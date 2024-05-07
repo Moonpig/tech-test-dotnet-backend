@@ -103,6 +103,7 @@ Q1. What 'code smells' / anti-patterns did you find in the existing
 Q2. What best practices have you used while implementing your solution?
 
 Q3. What further steps would you take to improve the solution given more time?
+Handle public holidays by updating the weekend condition
 
 Q4. What's a technology that you're excited about and where do you see this 
     being applicable? (Your answer does not have to be related to this problem)
@@ -141,11 +142,13 @@ Despatch Date
 
 ### Lead time added to despatch date  
 
+Case 1
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Monday - 01/01/2018  
 **When** the despatch date is calculated  
 **Then** the despatch date is Tuesday - 02/01/2018  
 
+Case 2
 **Given** an order contains a product from a supplier with a lead time of 2 days  
 **And** the order is place on a Monday - 01/01/2018  
 **When** the despatch date is calculated  
@@ -153,6 +156,7 @@ Despatch Date
 
 ### Supplier with longest lead time is used for calculation
 
+Case 3
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order also contains a product from a different supplier with a lead time of 2 days  
 **And** the order is place on a Monday - 01/01/2018  
@@ -161,16 +165,19 @@ Despatch Date
 
 ### Lead time is not counted over a weekend
 
+Case 4
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
-**Then** the despatch date is Monday - 08/01/2018  
+**Then** the despatch date is Monday - 08/01/2018	
 
+Case 5
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Saturday - 06/01/18  
 **When** the despatch date is calculated  
 **Then** the despatch date is Tuesday - 09/01/2018  
 
+Case 6
 **Given** an order contains a product from a supplier with a lead time of 1 days  
 **And** the order is place on a Sunday - 07/01/2018  
 **When** the despatch date is calculated  
@@ -178,11 +185,13 @@ Despatch Date
 
 ### Lead time over multiple weeks
 
+Case 7
 **Given** an order contains a product from a supplier with a lead time of 6 days  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
 **Then** the despatch date is Monday - 15/01/2018  
 
+Case 8
 **Given** an order contains a product from a supplier with a lead time of 11 days  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
