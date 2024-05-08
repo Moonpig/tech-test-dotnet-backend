@@ -142,13 +142,13 @@ Despatch Date
 
 ### Lead time added to despatch date  
 
-Case 1
+##### Case 1  
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Monday - 01/01/2018  
 **When** the despatch date is calculated  
 **Then** the despatch date is Tuesday - 02/01/2018  
 
-Case 2
+##### Case 2 
 **Given** an order contains a product from a supplier with a lead time of 2 days  
 **And** the order is place on a Monday - 01/01/2018  
 **When** the despatch date is calculated  
@@ -156,7 +156,7 @@ Case 2
 
 ### Supplier with longest lead time is used for calculation
 
-#### Case 3
+##### Case 3
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order also contains a product from a different supplier with a lead time of 2 days  
 **And** the order is place on a Monday - 01/01/2018  
@@ -165,19 +165,19 @@ Case 2
 
 ### Lead time is not counted over a weekend
 
-#### Case 4 
+##### Case 4 
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
 **Then** the despatch date is Monday - 08/01/2018	
 
-Case 5
+##### Case 5
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Saturday - 06/01/18  
 **When** the despatch date is calculated  
 **Then** the despatch date is Tuesday - 09/01/2018  
 
-Case 6
+##### Case 6
 **Given** an order contains a product from a supplier with a lead time of 1 days  
 **And** the order is place on a Sunday - 07/01/2018  
 **When** the despatch date is calculated  
@@ -185,13 +185,13 @@ Case 6
 
 ### Lead time over multiple weeks
 
-Case 7
+##### Case 7
 **Given** an order contains a product from a supplier with a lead time of 6 days  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
 **Then** the despatch date is Monday - 15/01/2018  
 
-Case 8
+##### Case 8
 **Given** an order contains a product from a supplier with a lead time of 11 days  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
