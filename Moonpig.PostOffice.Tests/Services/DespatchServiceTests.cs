@@ -173,7 +173,7 @@ namespace Moonpig.PostOffice.Tests.Services
         }
 
         [Theory, MemberData(nameof(TestCases.VaryingLeadTimeOrders), MemberType = typeof(TestCases))]
-        public void OneProductWithVaryingLeadTimes(DateOnly orderDate, DateOnly expectedDate, int leadTime)
+        public void OneProductWithVaryingLeadTimes_MultipleCases(DateOnly orderDate, DateOnly expectedDate, int leadTime)
         {
             // Arrange
             SetupProduct(id: 1, leadTime: leadTime);

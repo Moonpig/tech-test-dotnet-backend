@@ -19,6 +19,7 @@ namespace Moonpig.PostOffice.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(DespatchDate), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Get(List<int> productIds, DateTime orderDate)
         {
             var despatchDate = _despatchService.GetDespatchDates(productIds, orderDate);

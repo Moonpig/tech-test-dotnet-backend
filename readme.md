@@ -100,13 +100,38 @@ document.
 Q1. What 'code smells' / anti-patterns did you find in the existing 
 	implementation of part 1 & 2?
 
+Code:
+* Code with important logic or database calls shouldn't be in the controller. It makes unit testing more time consuming/harder to maintian, a class should only have one responsibility and one reason to change.
+* Creating an instance of the dbcontext should be handled by dependency injection.
+* No dependency injection.
+* No request parameter validation.
+
+Tests:
+* `DateTime.Now` shouldn't be used in tests as it causes them to be flaky and "temporal", if the code was depending on a datetime then a mockable `DateTimeProvider` could be passed in through DI.
+
 Q2. What best practices have you used while implementing your solution?
 
+* Separated code into its own responsibilities, such as a dataprovider/repository for database calls, a despatch service for date calculations and the controller only responsible for controller actions.
+* Used dependency injection for all dependencies and the dbcontext, making it testable, easier to maintain and if a new data source is added no changes need to be made in the service.
+* Added unit test coverage for all public methods, i'd rather have high test coverage than have a bug reported.
+* Added a [`StartupExtensions`](https://github.com/samjones00/tech-test-dotnet-backend/blob/37a6a48ebaedeaaf862c03bb61411b40c9c2dd11/Moonpig.PostOffice.Api/StartupExtensions.cs) class to handle dependency injection, and separate dependencies from boilerplate startup code.
+
 Q3. What further steps would you take to improve the solution given more time?
-Handle public holidays by updating the weekend condition
+
+* Handle public holidays, this could be done by defining or sourcing (https://www.gov.uk/bank-holidays.json) a collection of invalid dates and use `.Except()` to exclude them from the available dates in [`DespatchService`](https://github.com/samjones00/tech-test-dotnet-backend/blob/37a6a48ebaedeaaf862c03bb61411b40c9c2dd11/Moonpig.PostOffice.Api/Services/DespatchService.cs#L56).
+* Handling of entities not found.
+* Returning bad request reasons (return BadRequestObjectResult instead of BadRequestResult).
+* Add swagger/openapi spec generation, seemed unnecessary for a single GET endpoint.
+* Add error logging.
 
 Q4. What's a technology that you're excited about and where do you see this 
     being applicable? (Your answer does not have to be related to this problem)
+
+As it's a simple api there's not a lot you can add without overcomplicating the solution.
+* The datasource could be updated to be asynchronous and then using `async` methods down to the controller actions for some minor performance gains
+* Azure functions could be used instead if there was a high number of requests
+* Redis or other caching could be used if the product/supplier catalog was generally unchanging, same for public holiday dates in future.
+* Queues/messages not applicable
 
 ## Request and Response Examples
 
@@ -169,7 +194,7 @@ Despatch Date
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Friday - 05/01/2018  
 **When** the despatch date is calculated  
-**Then** the despatch date is Monday - 08/01/2018	
+**Then** the despatch date is Monday - 08/01/2018
 
 ##### Case 5
 **Given** an order contains a product from a supplier with a lead time of 1 day  
