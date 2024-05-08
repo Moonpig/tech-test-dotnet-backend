@@ -11,16 +11,17 @@
     using Shouldly;
     using Xunit;
 
-    public class PostOfficeTests
+    public class DespatchDateControllerTests
     {
-        private readonly DespatchDateController _sut;
         private readonly Fixture _fixture;
         private readonly Mock<IDespatchService> _mockDespatchService;
 
-        public PostOfficeTests()
+        private readonly DespatchDateController _sut;
+
+        public DespatchDateControllerTests()
         {
-            _mockDespatchService = new Mock<IDespatchService>();
-            _fixture = new Fixture();
+            _mockDespatchService = new(MockBehavior.Strict);
+            _fixture = new();
 
             _sut = new(_mockDespatchService.Object);
         }
@@ -50,6 +51,10 @@
             var ids = new List<int>() { 1 };
             var date = DateTime.MinValue;
 
+            _mockDespatchService
+                .Setup(x => x.GetDespatchDates(ids, date))
+                .Returns((DespatchDate)null);
+
             // Act
             var result = _sut.Get(ids, date);
 
@@ -63,6 +68,10 @@
             // Arrange
             var ids = new List<int>() { };
             var date = _fixture.Create<DateTime>();
+
+            _mockDespatchService
+                .Setup(x => x.GetDespatchDates(ids, date))
+                .Returns((DespatchDate)null);
 
             // Act
             var result = _sut.Get(ids, date);

@@ -8,7 +8,7 @@ namespace Moonpig.PostOffice.Data.Tests
 {
     public class DataProvidersTests
     {
-        private Fixture _fixture;
+        private readonly Fixture _fixture;
         private readonly Mock<IDbContext> _mockDbContext;
 
         private readonly DataProvider _sut;
@@ -16,8 +16,7 @@ namespace Moonpig.PostOffice.Data.Tests
         public DataProvidersTests()
         {
             _fixture = new();
-            var rep = new MockRepository(MockBehavior.Strict);
-            _mockDbContext = rep.Create<IDbContext>();
+            _mockDbContext = new(MockBehavior.Strict);
 
             _sut = new(_mockDbContext.Object);
         }

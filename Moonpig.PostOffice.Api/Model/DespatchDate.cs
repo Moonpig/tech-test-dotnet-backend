@@ -5,7 +5,7 @@
     public class DespatchDate
     {
         public DespatchDate()
-        {       
+        {
         }
 
         public DespatchDate(DateTime date)

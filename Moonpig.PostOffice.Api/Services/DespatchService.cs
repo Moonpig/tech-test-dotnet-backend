@@ -1,9 +1,9 @@
-﻿using Moonpig.PostOffice.Api.Interfaces;
-using Moonpig.PostOffice.Api.Model;
-using Moonpig.PostOffice.Data.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moonpig.PostOffice.Api.Interfaces;
+using Moonpig.PostOffice.Api.Model;
+using Moonpig.PostOffice.Data.Interfaces;
 
 namespace Moonpig.PostOffice.Api.Services
 {
@@ -18,7 +18,7 @@ namespace Moonpig.PostOffice.Api.Services
 
         public DespatchDate GetDespatchDates(List<int> productIds, DateTime orderDate)
         {
-            if (!productIds.Any() || orderDate == DateTime.MinValue)
+            if (productIds.Count == 0 || orderDate == DateTime.MinValue)
             {
                 return null;
             }
@@ -31,9 +31,9 @@ namespace Moonpig.PostOffice.Api.Services
 
         private int GetMaxLeadTime(List<int> productIds)
         {
-            var leadTimes = productIds.Select(id =>
+            var leadTimes = productIds.Select(productId =>
             {
-                var product = _dataProvider.GetProduct(id);
+                var product = _dataProvider.GetProduct(productId);
                 var supplier = _dataProvider.GetSupplier(product.SupplierId);
 
                 return supplier.LeadTime;
