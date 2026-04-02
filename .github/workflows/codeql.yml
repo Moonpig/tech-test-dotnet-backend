@@ -1,0 +1,19 @@
+name: CodeQL Advanced Scanning
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  codeql:
+    uses: moonpig/moonpig-ops-pipeline-workflows/.github/workflows/codeql-scan.yml@master
+    with:
+      build-modes: |
+        csharp=manual
+      build-script: ./scripts/codeql-build.sh
+    secrets: inherit
